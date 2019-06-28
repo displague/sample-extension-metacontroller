@@ -1,0 +1,7 @@
+# This is an example.yaml file which may be included in documentation
+apiVersion: sample.crossplane.io/v1
+kind: HelloWorld
+metadata:
+  name: marques
+spec:
+  who: Marques

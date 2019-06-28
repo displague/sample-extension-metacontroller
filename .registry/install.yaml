@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sample-extension-metacontroller-install
+  namespace: crossplane-system
+  labels:
+    core.crossplane.io/name: "crossplane-sample-extension-installer"
+    app.kubernetes.io/managed-by: "stax"
+spec:
+  selector:
+    matchLabels:
+      core.crossplane.io/name: "crossplane-sample-extension"
+  template:
+    spec:
+      containers:
+      - name: sample-extension-metacontroller
+        image: crossplane/sample-extension-metacontroller
+        args: ["prepare"]
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      restartPolicy: Never
+  backoffLimit: 4
+
