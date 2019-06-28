@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: sample-extension-metacontroller
-        image: crossplane/sample-extension-metacontroller
+        image: displague/sample-extension-metacontroller
         args: ["prepare"]
         env:
         - name: POD_NAME
