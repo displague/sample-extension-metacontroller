@@ -3,6 +3,9 @@ kind: CompositeController
 metadata:
   name: hello-controller
   namespace: crossplane-system
+  labels:
+    core.crossplane.io/name: "crossplane-sample-extension-installer"
+    app.kubernetes.io/managed-by: "stax"
 spec:
   generateSelector: true
   parentResource:

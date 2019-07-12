@@ -1,3 +1,7 @@
+# Crossplane Stack - Metacontroller Example
+
+## Building
+
 ### Prerequisite
 
 For now, make sure metacontroller is installed first.
@@ -21,7 +25,7 @@ Create the extension.  The files in this repository will be bundled into a docke
 DOCKER_ORG=displague
 sed -i s/displague/$DOCKER_ORG/ .registry/install.yaml # TODO(displague) this needs to change
 docker build . --tag $DOCKER_ORG/sample-extension-metacontroller
-docker push
+docker push $DOCKER_ORG/sample-extension-metacontroller
 ```
 
 The dockerfile is composed of the Crossplane metadata necessary to be considered an extension, but it also includes a script (`install.sh`, the `CMD` of this docker image) to handle installation, updating, and removal of the Extension life-cycle controller.  Arguments may be supplied to this command (in the future) to denote which version of the controller to deploy.  While not implemented currently, these arguments would be provided in `install.yaml`.
