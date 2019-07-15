@@ -4,8 +4,12 @@ metadata:
   name: sample-extension-metacontroller-install
   namespace: crossplane-system
 spec:
+  completions: 1
+  parallelism: 1
+  backoffLimit: 4
   template:
     spec:
+      restartPolicy: Never
       containers:
       - name: sample-extension-metacontroller
         image: displague/sample-extension-metacontroller
@@ -19,5 +23,3 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-  backoffLimit: 4
-
