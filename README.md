@@ -71,4 +71,9 @@ EOS
 kubectl apply -f deploy-a-resource-the-extension-handles.yaml
 ```
 
+It works!
 
+```
+$ kubectl -n default logs $DOCKER_ORG
+Hello, <your DOCKER_ORG here>!
+```

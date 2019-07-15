@@ -2,7 +2,6 @@ apiVersion: metacontroller.k8s.io/v1alpha1
 kind: CompositeController
 metadata:
   name: hello-controller
-  namespace: crossplane-system
   labels:
     core.crossplane.io/name: "crossplane-sample-extension-installer"
     app.kubernetes.io/managed-by: "stax"
@@ -19,4 +18,4 @@ spec:
   hooks:
     sync:
       webhook:
-        url: http://hello-controller.crossplane-system/sync
+        url: http://hello-controller.default/sync # namespace is required since metacontroller is running in "metacontroller" namespace

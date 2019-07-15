@@ -1,20 +1,16 @@
 #!/bin/sh
 
-NAMESPACE=${POD_NAME:-crossplane-system}
-NAME=${POD_NAMESPACE:-hello-controller}
+NAME=${POD_NAME:-hello-controller}
+NAMESPACE=${POD_NAMESPACE:-crossplane-system}
 
 help() { echo "$0 prepare|remove"; }
 
 case "$1" in
 	prepare)
-		kubectl -n "$NAMESPACE" create configmap "$NAME" --from-file=sync.py
-		kubectl -n "$NAMESPACE" apply -f controller.yaml
-		kubectl -n "$NAMESPACE" apply -f webhook.yaml
+		kubectl -n "$NAMESPACE" apply -k .
 		;;
 	remove)
-		kubectl -n "$NAMESPACE" delete configmap "$NAME"
-		kubectl -n "$NAMESPACE" delete -f controller.yaml
-		kubectl -n "$NAMESPACE" delete -f webhook.yaml
+		kubectl -n "$NAMESPACE" delete -k .
 		;;
 	help)
 		help
