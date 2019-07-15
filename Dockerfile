@@ -11,4 +11,4 @@ RUN apk add --update ca-certificates \
 
 COPY / .
 WORKDIR /
-CMD ["/install.sh"]
+ENTRYPOINT ["/install.sh"]
